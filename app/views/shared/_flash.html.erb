@@ -1,0 +1,11 @@
+<div class="w-full pt-20 px-6">
+  <% if flash.any? %> 
+    <div class="container mx-auto">
+      <% flash.each do |key, message| %>
+        <div class="mb-4 p-4 rounded-lg shadow-md <%= key == 'notice' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' %>">
+          <p><%= message %></p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
