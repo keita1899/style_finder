@@ -40,5 +40,14 @@ module Myapp
 
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
+
+    config.generators do |g|
+      g.helper false
+      g.test_framework :rspec,
+                       system_specs: true,
+                       view_specs: false,
+                       helper_specs: false,
+                       request_specs: false
+    end
   end
 end
