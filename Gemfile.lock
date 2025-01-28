@@ -68,6 +68,13 @@ GEM
       tzinfo (~> 2.0)
     ast (2.4.2)
     base64 (0.2.0)
+    better_html (2.1.1)
+      actionview (>= 6.0)
+      activesupport (>= 6.0)
+      ast (~> 2.0)
+      erubi (~> 1.4)
+      parser (>= 2.4)
+      smart_properties
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
@@ -223,6 +230,9 @@ GEM
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.37.0)
       parser (>= 3.3.1.0)
+    rubocop-erb (0.5.5)
+      better_html
+      rubocop (~> 1.45)
     rubocop-performance (1.23.1)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
@@ -234,6 +244,7 @@ GEM
     rubocop-rspec (3.4.0)
       rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
+    smart_properties (1.17.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -290,6 +301,7 @@ DEPENDENCIES
   rails-i18n (~> 7.0.0)
   rspec-rails
   rubocop
+  rubocop-erb
   rubocop-performance
   rubocop-rails
   rubocop-rspec
