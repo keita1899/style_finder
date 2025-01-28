@@ -1,5 +1,7 @@
 require:
+  - rubocop-performance
   - rubocop-rails
+  - rubocop-erb
 
 inherit_from:
   - config/rubocop/rubocop.yml
