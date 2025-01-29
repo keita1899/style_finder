@@ -1,0 +1,5 @@
+<% if resource.errors.full_messages_for(key).any? %>
+  <div class="text-red-500 text-sm">
+    <p><%= resource.errors.full_messages_for(key).first %></p>
+  </div>
+<% end %>
