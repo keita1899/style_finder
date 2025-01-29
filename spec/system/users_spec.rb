@@ -111,4 +111,21 @@ RSpec.describe "Users", type: :system do
       end
     end
   end
+
+  describe "ログアウト" do
+    let!(:user) { create(:user, email: "test@example.com", password: "password123") }
+
+    before do
+      sign_in user
+    end
+
+    it "ログアウトボタンをクリックするとログアウトが成功する" do
+      visit root_path
+      click_link "ログアウト"
+
+      expect(current_path).to eq(user_session_path)
+      expect(page).to have_content("ログアウトしました。")
+      expect(page).to have_link("ログイン")
+    end
+  end
 end
