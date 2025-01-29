@@ -11,7 +11,7 @@ RSpec.describe "Users", type: :system do
         visit new_user_registration_path
       end
 
-      it "ページが表示される" do
+      it "新規登録ページが表示される" do
         expect(page).to have_title("新規登録 | ItemMatch")
       end
 
@@ -52,6 +52,61 @@ RSpec.describe "Users", type: :system do
 
       it "フラッシュメッセージが表示される" do
         visit new_user_registration_path
+        expect(page).to have_content("すでにログインしています。")
+      end
+    end
+  end
+
+  describe "ログイン" do
+    let!(:user) { create(:user, email: "test@example.com", password: "password123") }
+
+    context "ログインしていない場合" do
+      before { visit new_user_session_path }
+
+      it "ログインページが表示される" do
+        expect(page).to have_title("ログイン | ItemMatch")
+      end
+
+      it "入力が正しいとログインが成功する" do
+        fill_in "メールアドレス", with: user.email
+        fill_in "パスワード", with: "password123"
+        click_button "ログイン"
+
+        expect(current_path).to eq(root_path)
+        expect(page).to have_content("ログインしました。")
+        expect(page).to have_link("ログアウト")
+      end
+
+      it "メールアドレスが間違っているとログインが失敗する" do
+        fill_in "メールアドレス", with: "wrong@example.com"
+        fill_in "パスワード", with: "password123"
+        click_button "ログイン"
+
+        expect(current_path).to eq(user_session_path)
+        expect(page).to have_content("メールアドレスまたはパスワードが違います。")
+      end
+
+      it "パスワードが間違っているとログインが失敗する" do
+        fill_in "メールアドレス", with: user.email
+        fill_in "パスワード", with: "wrongpassword"
+        click_button "ログイン"
+
+        expect(current_path).to eq(user_session_path)
+        expect(page).to have_content("メールアドレスまたはパスワードが違います。")
+      end
+    end
+
+    context "ログインしている場合" do
+      before do
+        sign_in user
+        visit new_user_session_path
+      end
+
+      it "Homeページにリダイレクトされる" do
+        expect(current_path).to eq(root_path)
+      end
+
+      it "フラッシュメッセージが表示される" do
         expect(page).to have_content("すでにログインしています。")
       end
     end
