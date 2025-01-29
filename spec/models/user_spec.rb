@@ -70,6 +70,21 @@ RSpec.describe User, type: :model do
         expect(user.errors[:password]).to include("は128文字以内で入力してください")
       end
 
+      it "パスワードの形式が間違っていると失敗する" do
+        invalid_passwords = [
+          "abcdefg",
+          "12345678",
+          "abc123!",
+        ]
+
+        invalid_passwords.each do |invalid_password|
+          user.password = invalid_password
+          user.password_confirmation = invalid_password
+          expect(user).to be_invalid
+          expect(user.errors[:password]).to include("は8文字以上の英数字である必要があります")
+        end
+      end
+
       it "パスワードと確認用パスワードが一致していないと失敗する" do
         user.password = "password123"
         user.password_confirmation = "differentpassword"

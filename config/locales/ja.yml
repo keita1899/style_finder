@@ -1,0 +1,4 @@
+ja:
+  errors:
+    messages:
+      password_complexity: "は8文字以上の英数字である必要があります"
