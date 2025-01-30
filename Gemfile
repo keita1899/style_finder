@@ -48,6 +48,10 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
 
+gem "activestorage"
+
+gem "image_processing", ">= 1.2"
+
 gem "devise", "~> 4.9.3"
 
 gem "devise-i18n", "~> 1.12.0"
