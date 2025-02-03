@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   validate :password_complexity
 
+  has_many :recognitions, dependent: :destroy
+
   private
 
     def password_complexity
