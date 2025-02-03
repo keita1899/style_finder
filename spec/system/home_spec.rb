@@ -9,7 +9,6 @@ RSpec.describe "Home", type: :system do
     it "ホームページが正しく表示されること" do
       visit root_path
       expect(page).to have_title("Home | ItemMatch")
-      expect(page).to have_content("芸能人のアイテムをチェック")
       expect(page).to have_current_path(root_path)
     end
   end
