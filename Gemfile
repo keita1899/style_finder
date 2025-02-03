@@ -49,6 +49,7 @@ gem "bootsnap", require: false
 # gem "sassc-rails"
 
 gem "activestorage"
+gem "active_storage_validations"
 
 gem "image_processing", ">= 1.2"
 
